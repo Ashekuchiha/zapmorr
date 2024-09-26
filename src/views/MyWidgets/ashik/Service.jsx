@@ -9,12 +9,22 @@ import { Button, Grid } from '@mui/material';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
 
-const validationSchema = yup.object();
+const validationSchema = yup.object({
+    name:yup.string().min(2, 'Too Short!').max(80, 'Too Long!').required('required'),
+    description:yup.string().min(2, 'Too Short!').max(500, 'Too Long!').required('required'),
+    icon:yup.string().min(2, 'Too Short!').max(80, 'Too Long!').required('required'),
+    featured:yup.string().min(2, 'Too Short!').max(80, 'Too Long!').required('required'),
+});
 
 export default function Service() {
 
     const formik = useFormik({
-        initialValues: {},
+        initialValues: {
+            name:'',
+            description:'',
+            icon:'',
+            featured:'',
+        },
         validationSchema: validationSchema,
         onSubmit: (values) => {
           alert(JSON.stringify(values, null, 2));
