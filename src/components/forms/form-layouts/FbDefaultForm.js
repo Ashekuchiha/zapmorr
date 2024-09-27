@@ -149,6 +149,7 @@ const FbDefaultForm = () => {
               label="Check this custom checkbox"
             />
           </Grid>
+          
           <Grid item lg={4} md={6} sm={12}>
             <FormControl component="fieldset">
               <RadioGroup
@@ -176,6 +177,7 @@ const FbDefaultForm = () => {
             </FormControl>
           </Grid>
         </Grid>
+
         <CustomFormLabel htmlFor="standard-select-number">Select</CustomFormLabel>
         <CustomSelect
           fullWidth

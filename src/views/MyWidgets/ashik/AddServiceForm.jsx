@@ -8,22 +8,21 @@ import * as yup from 'yup';
 import { Button, Grid } from '@mui/material';
 import CustomFormLabel from 'src/components/forms/theme-elements/CustomFormLabel';
 import CustomTextField from 'src/components/forms/theme-elements/CustomTextField';
+import CustomSwitch from 'src/components/forms/theme-elements/CustomSwitch';
+import LiveSwitch from './switch/LiveSwitch';
 
 const validationSchema = yup.object({
     name:yup.string().min(2, 'Too Short!').max(80, 'Too Long!').required('required'),
     description:yup.string().min(2, 'Too Short!').max(500, 'Too Long!').required('required'),
-    icon:yup.string().min(2, 'Too Short!').max(80, 'Too Long!').required('required'),
-    featured:yup.string().min(2, 'Too Short!').max(80, 'Too Long!').required('required'),
 });
 
-export default function Service() {
+export default function AddServiceForm() {
 
     const formik = useFormik({
         initialValues: {
             name:'',
             description:'',
-            icon:'',
-            featured:'',
+            featured:false,
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -65,7 +64,7 @@ export default function Service() {
                         </Grid>
                         <Grid item xs={12} sm={12} lg={6} order={{ xs: 3, lg: 3 }}>
                             <CustomFormLabel>Icon</CustomFormLabel>
-                            <CustomTextField
+                            {/* <CustomTextField
                                 fullWidth
                                 id="icon"
                                 name="icon"
@@ -73,11 +72,12 @@ export default function Service() {
                                 onChange={formik.handleChange}
                                 error={formik.touched.icon && Boolean(formik.errors.icon)}
                                 helperText={formik.touched.icon && formik.errors.icon}
-                            />
+                            /> */}
+                            <input type="file"/>
                         </Grid>
                         <Grid item xs={12} sm={12} lg={6} order={{ xs: 4, lg: 4 }}>
                             <CustomFormLabel>Featured</CustomFormLabel>
-                            <CustomTextField
+                            {/* <CustomTextField
                                 fullWidth
                                 id="featured"
                                 name="featured"
@@ -85,6 +85,11 @@ export default function Service() {
                                 onChange={formik.handleChange}
                                 error={formik.touched.featured && Boolean(formik.errors.featured)}
                                 helperText={formik.touched.featured && formik.errors.featured}
+                            /> */}
+                             <LiveSwitch
+                                onSwitchChange={(value) =>
+                                    formik.setFieldValue('featured', value) // Update Formik's field value
+                                }
                             />
                         </Grid>
                     </Grid>

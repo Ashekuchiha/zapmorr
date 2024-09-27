@@ -15,10 +15,10 @@ import Papa from 'papaparse';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 
 function ReusablePaginationTable({
-    columns, apiUrl, rowsPerPageOptions = [5, 10, 25], defaultRowsPerPage = 5,
+    children,columns, apiUrl, rowsPerPageOptions = [5, 10, 25], defaultRowsPerPage = 5,
     title, enableSearch = true, enableSort = true, bulkActions = []
 }) {
     const [page, setPage] = useState(0);
@@ -215,6 +215,7 @@ function ReusablePaginationTable({
     return (
         <>
             <ParentCard title={title}>
+                {children}
                 <Paper variant='outlined'>
                     <Box sx={{ padding: '16px', backgroundColor: 'transparent' }}>
                         <Stack direction="row" justifyContent="space-between" alignItems="center">
